@@ -37,5 +37,5 @@ private:
 
 	// Property to adjust the look sensitivity (pitch & yaw)
 	UPROPERTY(EditAnywhere)
-		float RotationRate = 250; // Seperate this into Y-axis and X-axis??
+		float RotationRate = 75; // Seperate this into Y-axis and X-axis??
 };
