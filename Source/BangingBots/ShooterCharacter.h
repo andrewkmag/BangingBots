@@ -32,15 +32,19 @@ public:
 	// Called to calculate Damage taken
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
+	// Called to deal damage
+	void Shoot();
+
 	// Called to check if character is dead; health = 0
 	UFUNCTION(BlueprintPure)
 		bool IsDead() const;
+
 private:
 	void MoveForward(float AxisValue);
 	void MoveRight(float AxisValue);
 	void LookUpRate(float AxisValue);
 	void LookRightRate(float AxisValue);
-	void Shoot();
+	
 
 	// Property to adjust the look sensitivity (pitch & yaw)
 	UPROPERTY(EditAnywhere)

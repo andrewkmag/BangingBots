@@ -7,6 +7,11 @@ void AEnemyAIController::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if (AIBehavior != nullptr)
+	{
+		RunBehaviorTree(AIBehavior);
+		GetBlackboardComponent()->SetValueAsVector(TEXT("StartLocation"), GetPawn()->GetActorLocation());
+	}
 }
 
 void AEnemyAIController::Tick(float DeltaSeconds)
@@ -16,11 +21,11 @@ void AEnemyAIController::Tick(float DeltaSeconds)
 	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
 	
 	if (LineOfSightTo(PlayerPawn)) {
-		SetFocus(PlayerPawn);
-		MoveToActor(PlayerPawn, AcceptanceRadius);
+		GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
+		GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLocation"), PlayerPawn->GetActorLocation());
+
 	}
 	else {
-		ClearFocus(EAIFocusPriority::Gameplay);
-		StopMovement();
+		GetBlackboardComponent()->ClearValue(TEXT("PlayerLocation"));
 	}
 }

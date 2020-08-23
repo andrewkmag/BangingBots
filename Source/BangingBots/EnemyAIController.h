@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "Kismet/GameplayStatics.h"
+#include "BehaviorTree/BlackboardComponent.h"
 #include "EnemyAIController.generated.h"
 
 /**
@@ -23,5 +24,5 @@ protected:
 
 private:
 	UPROPERTY(EditAnywhere)
-		float AcceptanceRadius = 200;
+		class UBehaviorTree* AIBehavior;
 };
