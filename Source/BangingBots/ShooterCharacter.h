@@ -8,6 +8,7 @@
 #include "GameFramework/Character.h"
 #include "Gun.h"
 #include "Engine/World.h"
+#include "BangingBotsGameModeBase.h"
 #include "ShooterCharacter.generated.h"
 
 UCLASS()

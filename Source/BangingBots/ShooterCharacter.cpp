@@ -85,10 +85,17 @@ float AShooterCharacter::TakeDamage(float DamageAmount, FDamageEvent const& Dama
 	Health -= DamageTaken;
 	UE_LOG(LogTemp, Warning, TEXT("Health left %f"), Health);
 	
-	// If character is dead detach controller and
-	// turn off capsule collision
 	if (IsDead())
-	{
+	{			
+		// Get Game mode
+		ABangingBotsGameModeBase* GameMode = GetWorld()->GetAuthGameMode<ABangingBotsGameModeBase>();
+		if(GameMode != nullptr)
+		{
+			GameMode->PawnKilled(this);
+		}
+
+		// If character is dead detach controller and
+		// turn off capsule collision
 		DetachFromControllerPendingDestroy();
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
